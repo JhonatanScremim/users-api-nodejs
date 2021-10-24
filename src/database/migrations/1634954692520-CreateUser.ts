@@ -12,7 +12,7 @@ export default class CreateUser1634954692520 implements MigrationInterface {
                         type: 'varchar',
                         isPrimary: true,
                         generationStrategy: 'uuid',
-                        default: 'uuid_generate_v4()' //Gerar esse campo de forma automatica sendo uuid
+                        default: 'uuid_generate_v4()',
                     },
                     {
                         name: 'name',
@@ -22,7 +22,23 @@ export default class CreateUser1634954692520 implements MigrationInterface {
                     {
                         name: 'email',
                         type: 'varchar',
+                        isUnique: true,
                         isNullable: false,
+                    },
+                    {
+                        name: 'password',
+                        type: 'varchar',
+                        isNullable: false,
+                    },
+                    {
+                        name: 'created_at',
+                        type: 'timestamp',
+                        default: 'now()',
+                    },
+                    {
+                        name: 'update_at',
+                        type: 'timestamp',
+                        default: 'now()',
                     }
                 ]
             })

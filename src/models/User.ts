@@ -1,6 +1,9 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn,
+     UpdateDateColumn, ManyToMany, JoinColumn } from 'typeorm';
 
-@Entity("users")
+import Address from './Address';
+
+@Entity('users')
 class User{
     @PrimaryGeneratedColumn('uuid')
     id: string;
@@ -19,6 +22,13 @@ class User{
 
     @UpdateDateColumn()
     update_at: Date;
+
+    @Column()
+    address_id: string;
+
+    @ManyToMany(() => Address)
+    @JoinColumn({name: 'addres_id'})
+    address: Address;
 }
 
 export default User;

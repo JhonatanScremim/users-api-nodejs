@@ -1,11 +1,12 @@
-import {MigrationInterface, QueryRunner, Table, TableForeignKey} from "typeorm";
+import {MigrationInterface, QueryRunner, Table} from "typeorm";
+import { isJSDocNullableType, isNullishCoalesce } from "typescript";
 
-export default class CreateUser1634954692520 implements MigrationInterface {
+export default class CreateAddress1635102640322 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: 'users',
+                name: 'address',
                 columns: [
                     {
                         name: 'id',
@@ -15,38 +16,33 @@ export default class CreateUser1634954692520 implements MigrationInterface {
                         default: 'uuid_generate_v4()',
                     },
                     {
-                        name: 'name',
+                        name: 'street',
                         type: 'varchar',
                         isNullable: false,
                     },
                     {
-                        name: 'email',
+                        name: 'number',
                         type: 'varchar',
                         isUnique: true,
                         isNullable: false,
                     },
                     {
-                        name: 'password',
+                        name: 'state',
                         type: 'varchar',
                         isNullable: false,
                     },
                     {
-                        name: 'created_at',
-                        type: 'timestamp',
-                        default: 'now()',
-                    },
-                    {
-                        name: 'update_at',
-                        type: 'timestamp',
-                        default: 'now()',
+                        name: 'city',
+                        type: 'varchar',
+                        isNullable: false,
                     }
                 ]
             })
-        );
+        )
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.dropTable('users');
+        await queryRunner.dropTable('address');
     }
 
 }

@@ -27,12 +27,17 @@ export default class CreateAddress1635102640322 implements MigrationInterface {
                         isNullable: false,
                     },
                     {
+                        name: 'city',
+                        type: 'varchar',
+                        isNullable: false,
+                    },
+                    {
                         name: 'state',
                         type: 'varchar',
                         isNullable: false,
                     },
                     {
-                        name: 'city',
+                        name: 'country',
                         type: 'varchar',
                         isNullable: false,
                     }

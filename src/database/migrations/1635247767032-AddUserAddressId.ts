@@ -23,7 +23,7 @@ export default class AddUserAddressId1635247767032 implements MigrationInterface
     public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.dropForeignKey('users', 'AddressUser');
 
-        await queryRunner.dropColumn('users', 'address');
+        await queryRunner.dropColumn('users', 'address_id');
     }
 
 }

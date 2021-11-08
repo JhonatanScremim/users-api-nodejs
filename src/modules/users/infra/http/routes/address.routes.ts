@@ -1,6 +1,6 @@
-import {Router} from 'express';
+import { Router } from 'express';
 
-import AddressService from '../services/CreateAddressService';
+import AddressService from '@modules/users/services/CreateAddressService';
 
 const addressRouter = Router();
 

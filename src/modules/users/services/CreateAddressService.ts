@@ -1,4 +1,4 @@
-import Address from '../models/Address';
+import Address from '../infra/typeorm/entities/Address';
 
 import { getRepository } from 'typeorm';
 import { json } from 'express';

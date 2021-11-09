@@ -3,6 +3,7 @@ import 'reflect-metadata';
 import express, { json } from 'express';
 import routes from './routes';
 import '../typeorm';
+import '@shared/container'
 
 const app = express();
 

@@ -1,34 +1,34 @@
-import User from '@modules/users/infra/typeorm/entities/User';
-import UserRepository from '@modules/users/repositories/UserRepository';
-import { getCustomRepository, getRepository } from 'typeorm'
+import {inject, injectable} from 'tsyringe';
 
-interface Request{
+import User from '@modules/users/infra/typeorm/entities/User';
+import IUserRepository from '../repositories/IUserRepository';
+
+interface IRequestDTO{
     name: string;
     email: string;
     password: string;
     address_id: string;
 }
 
+@injectable()
 class CreateUserService{
 
-    public async execute ({name, email, password, address_id}: Request): Promise<User | null>{
-        const userRepository = getRepository(User);
+    constructor(
+        @inject('UserRepository')
+        private userRepository: IUserRepository
+    ){}
 
-        const findByName = await userRepository.findOne({
-            where: { email },
-        });
 
-        if(findByName)
+    public async execute ({name, email, password, address_id}: IRequestDTO): Promise<User | null>{
+
+        const findByEmail = await this.userRepository.findByEmail(email);
+
+        if(findByEmail)
             throw Error('Esse email já está em uso');
 
-        const newUser = userRepository.create({
-            name,
-            email,
-            password,
-            address_id,
+        const newUser = this.userRepository.create({
+            name, email, password, address_id
         });
-
-        await userRepository.save(newUser);
 
         return newUser;
     }
